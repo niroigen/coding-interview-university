@@ -111,7 +111,7 @@ void vector::insert(int index, int item) {
   _size++;
 
   for (int i = _size - 1; i > index; i--) {
-    *(_pointer+i+1) = *(_pointer+i);
+    *(_pointer+i) = *(_pointer+i-1);
   }
 
   *(_pointer+index) = item;
