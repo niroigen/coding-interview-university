@@ -18,5 +18,6 @@ Thumbs.db
 .vscode
 vector
 linked_list
+queue
 *.out
 *.class
