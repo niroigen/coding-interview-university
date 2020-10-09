@@ -2,12 +2,6 @@
 *.iml
 personal-9894.md
 
-# Targets Windows & Unix temporary files
-~$*
-*~
-
-# OS generated files #
-######################
 .DS_Store
 .DS_Store?
 .Spotlight-V100
@@ -15,10 +9,10 @@ personal-9894.md
 ehthumbs.db
 Thumbs.db
 .vscode
-*
 
-*.out
-*.class
+
+*
+!*/
 !*.c
 !*.cpp
 !*.py
