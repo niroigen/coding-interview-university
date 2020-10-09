@@ -22,4 +22,4 @@ Thumbs.db
 !*.c
 !*.cpp
 !*.py
-!.java
+!*.java
