@@ -46,7 +46,7 @@ void vector::push(int item) {
 
 // O(1) to remove value at end, and O(n) to resize array
 int vector::pop() {
-  if (size > 0) {
+  if (_size > 0) {
     int val = *(_pointer+_size-1);
 
     if (_size == _capacity/4) {
