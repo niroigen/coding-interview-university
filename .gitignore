@@ -16,9 +16,10 @@ ehthumbs.db
 Thumbs.db
 .vscode
 *
+
+*.out
+*.class
 !*.c
 !*.cpp
 !*.py
 !.java
-*.out
-*.class
