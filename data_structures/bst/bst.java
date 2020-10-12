@@ -88,6 +88,18 @@ public class bst {
     return max(height(root.left, h), height(root.right, h))+1;
   }
 
+  public int min_val(Node root) {
+    if (root==null) {
+      return -1;
+    }
+    if (root.left!=null) {
+      return min_val(root.left);
+    }
+    else {
+      return root.value;
+    }
+  }
+
   public static void main(String[] args) {
     bst bst=new bst();
     bst.insert(15);
@@ -107,6 +119,8 @@ public class bst {
     System.out.println("Is in tree 40 " + bst.is_in_tree(40));
 
     System.out.println("Height of tree " + bst.height(bst.root, 0));
+
+    System.out.println("Minimum Value " + bst.min_val(bst.root));
 
     bst.delete_tree();
 

@@ -82,6 +82,19 @@ int height(struct Node* root, int h) {
   return max(height(root->left, h), height(root->right, h)) + 1;
 }
 
+int min_val(struct Node* root) {
+  if (root==NULL) {
+    return -1;
+  }
+
+  if (root->left != NULL) {
+    return min_val(root->left);
+  }
+  else {
+    return root->value;
+  }
+}
+
 int main() {
   struct Node* root=NULL;
   insert(&root, 15);
@@ -104,6 +117,8 @@ int main() {
   printf("Is in tree 40 %d\n", is_in_tree(root, 40));
 
   printf("Height of tree %d\n", height(root,0));
+
+  printf("Minimum value %d\n", min_val(root));
 
   delete_tree(&root);
   inorder(root);
