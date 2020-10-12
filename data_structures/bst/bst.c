@@ -16,15 +16,14 @@ struct Node* createNode(int value) {
 }
 
 void insert(struct Node** root, int value) {
-  struct Node* node = createNode(value);
   if (*root==NULL) {
-    *root=node;
+    *root=createNode(value);
   }
   else if (value < (*root)->value) {
-    (*root)->left=node;
+    insert(&(*root)->left, value);
   }
   else {
-    (*root)->right=node;
+    insert(&(*root)->right, value);
   }
 }
 
@@ -33,8 +32,11 @@ int main() {
   insert(&root, 15);
   insert(&root, 20);
   insert(&root, 10);
+  insert(&root, 50);
 
   printf("Root value %d\n", root->value);
   printf("Right value %d\n", root->right->value);
   printf("Let value %d\n", root->left->value);
+  printf("Right's right %d\n", root->right->right->value);
+
 }
