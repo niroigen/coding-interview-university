@@ -113,6 +113,19 @@ public class bst {
     }
   }
 
+  public boolean is_valid_bst(Node root, int min, int max) {
+    if (root==null) {
+      return true;
+    }
+
+    if (root.value >= min && root.value <= max) {
+      return is_valid_bst(root.left, min, root.value) && is_valid_bst(root.right, root.value, max);
+    }
+    else {
+      return false;
+    }
+  }
+
   public static void main(String[] args) {
     bst bst=new bst();
     bst.insert(15);
@@ -135,6 +148,8 @@ public class bst {
 
     System.out.println("Minimum Value " + bst.min_val(bst.root));
     System.out.println("Maximum Value " + bst.max_val(bst.root));
+
+    System.out.println("Is Valid BST " + bst.is_valid_bst(bst.root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
     bst.delete_tree();
 

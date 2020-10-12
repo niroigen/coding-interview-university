@@ -1,3 +1,4 @@
+import sys
 class Node:
   def __init__(self, value):
     self.value=value
@@ -67,6 +68,15 @@ def max_val(root):
 
 root=None
 
+def is_valid_bst(root, min, max):
+  if root==None:
+    return True
+  
+  if root.value >= min and root.value <= max:
+    return is_valid_bst(root.left, min, root.value) and is_valid_bst(root.right, root.value, max)
+  else:
+    return False
+
 root=insert(root, 15)
 root=insert(root, 20)
 root=insert(root, 10)
@@ -88,6 +98,8 @@ print("Height of tree %d" % (height(root, 0)))
 
 print("Minimum value %d" % (min_val(root)))
 print("Minimum value %d" % (max_val(root)))
+
+print("Is valid BST %d" % (is_valid_bst(root, -sys.maxsize-1, sys.maxsize)))
 
 root=delete_tree()
 inorder(root)

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 struct Node {
   Node* left;
@@ -110,6 +111,20 @@ int max_val(Node* root) {
   }
 }
 
+bool is_binary_search_tree(Node* root, int min, int max) {
+  if (root==NULL) {
+    return true;
+  }
+
+  if (root->value >= min && root->value <= max) {
+    return is_binary_search_tree(root->left, min, root->value) && is_binary_search_tree(root->right, root->value, max);
+  }
+  else {
+    printf("Failed %d min: %d max: %d\n", root->value, min, max);
+    return false;
+  }
+}
+
 int main() {
   Node* root=NULL;
   insert(&root, 15);
@@ -133,6 +148,8 @@ int main() {
 
   printf("Minimum value %d\n", min_val(root));
   printf("Maximum value %d\n", max_val(root));
+
+  printf("Is valid binary tree %d\n", is_binary_search_tree(root, INT_MIN, INT_MAX));
 
   delete_tree(&root);
 
