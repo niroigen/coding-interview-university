@@ -44,6 +44,18 @@ void inorder(struct Node* root) {
   inorder(root->right);
 }
 
+void delete_tree(struct Node** root) {
+  if (*root==NULL) {
+    return;
+  }
+  delete_tree(&(*root)->left);
+  delete_tree(&(*root)->right);
+  (*root)->left=NULL;
+  (*root)->right=NULL;
+  free(*root);
+  *root=NULL;
+}
+
 int main() {
   struct Node* root=NULL;
   insert(&root, 15);
@@ -62,4 +74,7 @@ int main() {
   inorder(root);
   printf("\n");
 
+  delete_tree(&root);
+  inorder(root);
+  printf("\n");
 }

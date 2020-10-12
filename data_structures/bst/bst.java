@@ -53,6 +53,10 @@ public class bst {
     System.out.println(root.value);
     inorder(root.right);
   }
+
+  public void delete_tree() {
+    root=null;
+  }
   
   public static void main(String[] args) {
     bst bst=new bst();
@@ -66,6 +70,10 @@ public class bst {
     System.out.println("Let value " + (bst.root.left.value));
     System.out.println("Right's right " + (bst.root.right.right.value));
     System.out.println("Node count " + bst.node_count());
+
+    bst.inorder(bst.root);
+
+    bst.delete_tree();
 
     bst.inorder(bst.root);
   }

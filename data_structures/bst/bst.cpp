@@ -45,6 +45,19 @@ void inorder(Node* root) {
   inorder(root->right);
 }
 
+void delete_tree(Node** root) {
+  if (*root==NULL) {
+    return;
+  }
+
+  delete_tree(&(*root)->left);
+  delete_tree(&(*root)->right);
+  (*root)->left=NULL;
+  (*root)->right=NULL;
+  delete *root;
+  *root=NULL;
+}
+
 int main() {
   Node* root=NULL;
   insert(&root, 15);
@@ -58,6 +71,11 @@ int main() {
   printf("Right's right %d\n\n", root->right->right->value);
 
   printf("Node count %d\n", node_count(root,0));
+  inorder(root);
+  printf("\n");
+
+  delete_tree(&root);
+
   inorder(root);
   printf("\n");
 }
