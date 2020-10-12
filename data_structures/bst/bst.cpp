@@ -35,6 +35,16 @@ int node_count(Node* root, int count) {
   return node_count(root->left,count)+node_count(root->right,count)+1;
 }
 
+void inorder(Node* root) {
+  if (root==NULL) {
+    return;
+  }
+
+  inorder(root->left);
+  printf("%d ", root->value);
+  inorder(root->right);
+}
+
 int main() {
   Node* root=NULL;
   insert(&root, 15);
@@ -48,4 +58,6 @@ int main() {
   printf("Right's right %d\n\n", root->right->right->value);
 
   printf("Node count %d\n", node_count(root,0));
+  inorder(root);
+  printf("\n");
 }

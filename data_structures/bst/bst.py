@@ -20,6 +20,14 @@ def node_count(root, count):
   else:
     return node_count(root.left,count)+node_count(root.right,count)+1
 
+def inorder(root):
+  if root==None:
+    return
+  
+  inorder(root.left)
+  print(root.value)
+  inorder(root.right)
+
 root=None
 
 root=insert(root, 15)
@@ -33,3 +41,4 @@ print("Let value %d" % (root.left.value))
 print("Right's right %d" % (root.right.right.value))
 print("Node count %d" % (node_count(root,0)))
     
+inorder(root)

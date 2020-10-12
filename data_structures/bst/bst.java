@@ -43,6 +43,16 @@ public class bst {
       return node_count(root.left, count)+node_count(root.right, count)+1;
     }
   }
+
+  public void inorder(Node root) {
+    if (root==null) {
+      return;
+    }
+    
+    inorder(root.left);
+    System.out.println(root.value);
+    inorder(root.right);
+  }
   
   public static void main(String[] args) {
     bst bst=new bst();
@@ -56,5 +66,7 @@ public class bst {
     System.out.println("Let value " + (bst.root.left.value));
     System.out.println("Right's right " + (bst.root.right.right.value));
     System.out.println("Node count " + bst.node_count());
+
+    bst.inorder(bst.root);
   }
 }
