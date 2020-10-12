@@ -30,6 +30,19 @@ public class bst {
     }
     return root;
   }
+
+  public int node_count() {
+    return node_count(root, 0);
+  }
+
+  private int node_count(Node root, int count) {
+    if (root==null) {
+      return count;
+    }
+    else {
+      return node_count(root.left, count)+node_count(root.right, count)+1;
+    }
+  }
   
   public static void main(String[] args) {
     bst bst=new bst();
@@ -42,5 +55,6 @@ public class bst {
     System.out.println("Right value " + (bst.root.right.value));
     System.out.println("Let value " + (bst.root.left.value));
     System.out.println("Right's right " + (bst.root.right.right.value));
+    System.out.println("Node count " + bst.node_count());
   }
 }

@@ -27,6 +27,14 @@ void insert(Node** root, int value) {
   }
 }
 
+int node_count(Node* root, int count) {
+  if (root==NULL) {
+    return count;
+  }
+
+  return node_count(root->left,count)+node_count(root->right,count)+1;
+}
+
 int main() {
   Node* root=NULL;
   insert(&root, 15);
@@ -37,5 +45,7 @@ int main() {
   printf("Root value %d\n", root->value);
   printf("Right value %d\n", root->right->value);
   printf("Let value %d\n", root->left->value);
-  printf("Right's right %d\n", root->right->right->value);
+  printf("Right's right %d\n\n", root->right->right->value);
+
+  printf("Node count %d\n", node_count(root,0));
 }

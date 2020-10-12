@@ -27,16 +27,28 @@ void insert(struct Node** root, int value) {
   }
 }
 
+int count_nodes(struct Node* root, int count) {
+  if (root==NULL) {
+    return count;
+  }
+  else {
+    return count_nodes(root->left, count)+count_nodes(root->right, count)+1;
+  }
+}
+
 int main() {
   struct Node* root=NULL;
   insert(&root, 15);
   insert(&root, 20);
   insert(&root, 10);
   insert(&root, 50);
+  insert(&root, 60);
 
   printf("Root value %d\n", root->value);
   printf("Right value %d\n", root->right->value);
   printf("Let value %d\n", root->left->value);
-  printf("Right's right %d\n", root->right->right->value);
+  printf("Right's right %d\n\n", root->right->right->value);
+
+  printf("Node count %d\n", count_nodes(root, 0));
 
 }
