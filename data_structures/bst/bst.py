@@ -23,6 +23,16 @@ def node_count(root, count):
 def delete_tree():
   return None
 
+def is_in_tree(root, value):
+  if root==None:
+    return False
+  
+  elif root.value==value:
+    return True
+  elif value < root.value:
+    return is_in_tree(root.left, value)
+  else:
+    return is_in_tree(root.right, value)
 
 def inorder(root):
   if root==None:
@@ -46,6 +56,9 @@ print("Right's right %d" % (root.right.right.value))
 print("Node count %d" % (node_count(root,0)))
     
 inorder(root)
+
+print("Is in tree 10 %d\n" % (is_in_tree(root, 10)))
+print("Is in tree 40 %d\n" % (is_in_tree(root, 40)))
 
 root=delete_tree()
 inorder(root)

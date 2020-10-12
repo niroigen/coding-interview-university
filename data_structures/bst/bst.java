@@ -58,6 +58,25 @@ public class bst {
     root=null;
   }
   
+  public boolean is_in_tree(int value) {
+    return is_in_tree(root, value);
+  }
+
+  private boolean is_in_tree(Node root, int value) {
+    if (root==null) {
+      return false;
+    }
+    else if (root.value==value) {
+      return true;
+    }
+    else if (value < root.value) {
+      return is_in_tree(root.left, value);
+    }
+    else {
+      return is_in_tree(root.right, value);
+    }
+  }
+
   public static void main(String[] args) {
     bst bst=new bst();
     bst.insert(15);
@@ -72,6 +91,9 @@ public class bst {
     System.out.println("Node count " + bst.node_count());
 
     bst.inorder(bst.root);
+
+    System.out.println("Is in tree 10 " + bst.is_in_tree(10));
+    System.out.println("Is in tree 40 " + bst.is_in_tree(40));
 
     bst.delete_tree();
 

@@ -58,6 +58,21 @@ void delete_tree(Node** root) {
   *root=NULL;
 }
 
+bool is_in_tree(Node* root, int value) {
+  if (root==NULL) {
+    return false;
+  }
+  if (root->value==value) {
+    return true;
+  }
+  else if (value < root->value) {
+    return is_in_tree(root->left, value);
+  }
+  else {
+    return is_in_tree(root->right, value);
+  }
+}
+
 int main() {
   Node* root=NULL;
   insert(&root, 15);
@@ -73,6 +88,9 @@ int main() {
   printf("Node count %d\n", node_count(root,0));
   inorder(root);
   printf("\n");
+
+  printf("Is in tree 10 %d\n", is_in_tree(root, 10));
+  printf("Is in tree 40 %d\n", is_in_tree(root, 40));
 
   delete_tree(&root);
 
