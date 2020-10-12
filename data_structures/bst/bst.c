@@ -70,6 +70,18 @@ int is_in_tree(struct Node* root, int value) {
   }
 }
 
+int max(int a, int b) {
+  return a > b ? a : b;
+}
+
+int height(struct Node* root, int h) {
+  if (root==NULL) {
+    return 0;
+  }
+
+  return max(height(root->left, h), height(root->right, h)) + 1;
+}
+
 int main() {
   struct Node* root=NULL;
   insert(&root, 15);
@@ -90,6 +102,8 @@ int main() {
 
   printf("Is in tree 10 %d\n", is_in_tree(root, 10));
   printf("Is in tree 40 %d\n", is_in_tree(root, 40));
+
+  printf("Height of tree %d\n", height(root,0));
 
   delete_tree(&root);
   inorder(root);

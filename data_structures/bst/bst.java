@@ -77,6 +77,17 @@ public class bst {
     }
   }
 
+  public int max(int a, int b) {
+    return a>b ? a : b;
+  }
+
+  public int height(Node root, int h) {
+    if (root == null) {
+      return 0;
+    }
+    return max(height(root.left, h), height(root.right, h))+1;
+  }
+
   public static void main(String[] args) {
     bst bst=new bst();
     bst.insert(15);
@@ -94,6 +105,8 @@ public class bst {
 
     System.out.println("Is in tree 10 " + bst.is_in_tree(10));
     System.out.println("Is in tree 40 " + bst.is_in_tree(40));
+
+    System.out.println("Height of tree " + bst.height(bst.root, 0));
 
     bst.delete_tree();
 

@@ -42,12 +42,18 @@ def inorder(root):
   print(root.value)
   inorder(root.right)
 
+def height(root, h):
+  if root==None:
+    return 0
+  return max(height(root.left, h), height(root.right, h))+1
+
 root=None
 
 root=insert(root, 15)
 root=insert(root, 20)
 root=insert(root, 10)
 root=insert(root, 50)
+root=insert(root, 60)
 
 print("Root value %d" % (root.value))
 print("Right value %d" % (root.right.value))
@@ -59,6 +65,8 @@ inorder(root)
 
 print("Is in tree 10 %d\n" % (is_in_tree(root, 10)))
 print("Is in tree 40 %d\n" % (is_in_tree(root, 40)))
+
+print("Height of tree %d" % (height(root, 0)))
 
 root=delete_tree()
 inorder(root)
