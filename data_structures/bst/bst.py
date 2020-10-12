@@ -56,6 +56,15 @@ def min_val(root):
   else:
     return root.value
 
+def max_val(root):
+  if root==None:
+    return -1
+  
+  if root.right!=None:
+    return max_val(root.right)
+  else:
+    return root.value
+
 root=None
 
 root=insert(root, 15)
@@ -78,6 +87,7 @@ print("Is in tree 40 %d\n" % (is_in_tree(root, 40)))
 print("Height of tree %d" % (height(root, 0)))
 
 print("Minimum value %d" % (min_val(root)))
+print("Minimum value %d" % (max_val(root)))
 
 root=delete_tree()
 inorder(root)

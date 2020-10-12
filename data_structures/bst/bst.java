@@ -100,6 +100,19 @@ public class bst {
     }
   }
 
+  public int max_val(Node root) {
+    if (root==null) {
+      return -1;
+    }
+
+    if (root.right!=null) {
+      return max_val(root.right);
+    }
+    else {
+      return root.value;
+    }
+  }
+
   public static void main(String[] args) {
     bst bst=new bst();
     bst.insert(15);
@@ -121,6 +134,7 @@ public class bst {
     System.out.println("Height of tree " + bst.height(bst.root, 0));
 
     System.out.println("Minimum Value " + bst.min_val(bst.root));
+    System.out.println("Maximum Value " + bst.max_val(bst.root));
 
     bst.delete_tree();
 

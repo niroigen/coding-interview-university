@@ -97,6 +97,19 @@ int min_val(Node* root) {
   }
 }
 
+int max_val(Node* root) {
+  if (root == NULL) {
+    return -1;
+  }
+
+  if (root->right!=NULL) {
+    return max_val(root->right);
+  }
+  else {
+    return root->value;
+  }
+}
+
 int main() {
   Node* root=NULL;
   insert(&root, 15);
@@ -113,12 +126,13 @@ int main() {
   inorder(root);
   printf("\n");
 
-  printf("Is in tree 10 %d\n", is_in_tree(root, 10));
+  printf("Is in tree 10 %d\n", is_in_tree(root, 15));
   printf("Is in tree 40 %d\n", is_in_tree(root, 40));
 
   printf("Height of tree %d\n", height(root,0));
 
   printf("Minimum value %d\n", min_val(root));
+  printf("Maximum value %d\n", max_val(root));
 
   delete_tree(&root);
 
