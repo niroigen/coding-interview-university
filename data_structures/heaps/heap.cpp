@@ -11,6 +11,38 @@ void swap(int i, int j) {
   max_heap[j]=temp;
 }
 
+void print() {
+  int loop;
+  for(loop = 0; loop < 10; loop++)
+      printf("%d ", max_heap[loop]);
+  printf("\n");
+}
+
+void sift_down(int i) {
+  int l=2*i;
+  int r=2*i+1;
+  if ((l<=size && r<=size) &&
+          (max_heap[i] < max_heap[l] || max_heap[i] < max_heap[r])) {
+    printf("2 childs %d and %d\n", l, r);
+    int max = (max_heap[l] > max_heap[r]) ? l : r;
+    int temp=max_heap[i];
+    max_heap[i]=max_heap[max];
+    max_heap[max]=temp;
+    sift_down(max);
+  }
+  else if (l<=size && max_heap[i] < max_heap[l]) {
+    int temp=max_heap[i];
+    max_heap[i]=max_heap[l];
+    max_heap[l]=temp;
+    sift_down(l);
+  }
+}
+
+void extract_max() {
+  max_heap[1]=max_heap[--size];
+  sift_down(1);
+}
+
 void sift_up(int i) {
   while (i>1) {
     if (max_heap[i/2] < max_heap[i]) {
@@ -20,9 +52,15 @@ void sift_up(int i) {
   }
 }
 
+void remove(int i) {
+  max_heap[i]=max_heap[--size];
+  sift_down(1);
+}
+
 void insert(int val) {
   max_heap[size]=val;
-  sift_up(size++);
+  sift_up(size);
+  size++;
 }
 
 int get_max() {
@@ -45,10 +83,11 @@ int main() {
   insert(3);
   insert(2);
 
-  int loop;
-  for(loop = 0; loop < 10; loop++)
-      printf("%d ", max_heap[loop]);
+  // print();
 
-  printf("\n");
+  remove(3);
+
+  print();
+
   // printf("Max %d\n", get_max());
 }

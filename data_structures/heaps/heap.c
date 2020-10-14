@@ -12,6 +12,44 @@ int right_child(int i) {
   return max_heap[2*i+1];
 }
 
+void sift_down() {
+  int i = 1;
+  while (2*i <= size) {
+    if (2*i+1 > size) {
+      if (max_heap[i] < max_heap[2*i]) {
+        int temp = max_heap[i];
+        max_heap[i]=max_heap[2*i];
+        max_heap[2*i]=temp;
+      }
+      else {
+        return;
+      }
+    }
+    else {
+      if (max_heap[i] < max_heap[2*i]) {
+        int temp = max_heap[i];
+        max_heap[i]=max_heap[2*i];
+        max_heap[2*i]=temp;
+        i*=2;
+      }
+      else if (max_heap[i] < max_heap[2*i+1]) {
+        int temp = max_heap[i];
+        max_heap[i]=max_heap[2*i+1];
+        max_heap[2*i+1]=temp;
+        i=2*i+1;
+      }
+      else {
+        return;
+      }
+    }
+  }
+}
+
+void extract_max() {
+  max_heap[1]=max_heap[size--];
+  sift_down();
+}
+
 void sift_up(int i) {
   while (i!=1) {
     printf("%d, %d\n", max_heap[i/2], max_heap[i]);
@@ -44,6 +82,13 @@ int is_empty() {
   return get_size()==0;
 }
 
+void print() {
+  int loop;
+  for(loop = 0; loop < 10; loop++)
+      printf("%d ", max_heap[loop]);
+  printf("\n");
+}
+
 int main() {
   insert(10);
   insert(20);
@@ -52,9 +97,11 @@ int main() {
   insert(3);
   insert(2);
 
-  int loop;
-  for(loop = 0; loop < 10; loop++)
-      printf("%d ", max_heap[loop]);
+  print();
+
+  extract_max();
+  extract_max();
+  print();
 
   printf("\n");
   printf("Max %d\n", get_max());
