@@ -122,6 +122,58 @@ int is_binary_search_tree(struct Node* root, int min, int max) {
   }
 }
 
+int is_next_value(struct Node* root, val) {
+  if (
+    (root->left!= NULL && root->left==val) ||
+    (root->right != NULL && root->right==val)
+    ) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
+}
+
+void delete_value(struct Node** root, int val) {
+  if (*root == NULL) {
+    return;
+  }
+  if (is_next_value(*root, val)) {
+    if ((*root)->left == NULL && (*root)->right == NULL) {
+      free(*root);
+      (*root) = NULL;
+    }
+    else if ((*root)->left == NULL && (*root)->right != NULL) {
+      struct Node* removed = (*root)->right;
+      (*root)->right=(*root)->right->right;
+      free(removed);
+      removed=NULL;
+    } 
+    else if ((*root)->left != NULL && (*root)->right == NULL) {
+      struct Node* removed = (*root)->left;
+      (*root)->left=(*root)->left->left;
+      free(removed);
+      removed=NULL;
+    }
+    else {
+      struct Node* selected = (*root)->right;
+      while (selected->left != NULL) {
+        selected=selected->left;
+      }
+
+      (*root)->value = selected->value;
+      free(selected);
+      selected=NULL;
+    }
+  }
+  else if (val<(*root)->value) {
+    delete_value(&(*root)->left, val);
+  }
+  else {
+    delete_value(&(*root)->right, val);
+  }
+}
+
 int main() {
   struct Node* root=NULL;
   insert(&root, 15);
@@ -150,7 +202,8 @@ int main() {
 
   printf("Is binary search tree %d\n", is_binary_search_tree(root, INT_MIN, INT_MAX));
 
-  delete_tree(&root);
+  // delete_tree(&root);
+  delete_value(&root,50);
   inorder(root);
   printf("\n");
 }
